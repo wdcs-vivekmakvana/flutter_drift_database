@@ -114,8 +114,9 @@ class AppDatabase extends _$AppDatabase {
 ```dart
 dart pub add dev:drift_local_storage_inspector dev:storage_inspector
 ```
+2. Download `Local Storage Inspector` in your IDE
 
-2. In my case , I am creating a [DatabaseInspector] class for Inspector
+3. In my case , I am creating a [DatabaseInspector] class for Inspector
 
 ```dart
 
