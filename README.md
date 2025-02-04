@@ -27,6 +27,27 @@ class TodoTable extends Table with TableMixin {
   ///
   TextColumn get listTest => text().map(ModelListTypeConverter()).nullable()();
 }
+
+/// List of model converter
+class ModelListTypeConverter extends TypeConverter<List<TestModel>, String> {
+  @override
+  List<TestModel> fromSql(String fromDb) {
+    if (jsonDecode(fromDb) is List<dynamic>) {
+      final result = <TestModel>[];
+      for (final element in (jsonDecode(fromDb) as List<dynamic>)) {
+        result.add(TestModel.fromJson(element as Map<String, dynamic>));
+      }
+      return result;
+    }
+
+    return List<TestModel>.empty();
+  }
+
+  @override
+  String toSql(List<TestModel> value) {
+    return jsonEncode(value.map((e) => e.toJson()).toList());
+  }
+}
 ```
 
 where DataClassName is not required but If you don't put it, It will reflect on 
