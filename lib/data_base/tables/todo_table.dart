@@ -17,6 +17,9 @@ class TodoTable extends Table with TableMixin {
 
   ///
   TextColumn get listTest => text().map(ModelListTypeConverter()).nullable()();
+
+  @override
+  String get tableName => 'TodoTable';
 }
 
 /// Enum representing the status of a Tod0 item.
