@@ -107,3 +107,48 @@ class AppDatabase extends _$AppDatabase {
 } 
 ```
 
+## Inspect Local database
+
+1. Add 2 dev dependencies in your project
+
+```dart
+dart pub add dev:drift_local_storage_inspector dev:storage_inspector
+```
+
+2. In my case , I am creating a [DatabaseInspector] class for Inspector
+
+```dart
+
+/// A class for inspecting and managing the local database.
+class DatabaseInspector {
+  /// Storage Server Driver
+  late final StorageServerDriver driver;
+
+  /// Initializes the database inspector and starts the storage server driver.
+  ///
+  /// This method creates a [DriftSQLDatabaseServer] instance using the provided
+  /// [AppDatabase] instance and adds it to a [StorageServerDriver]. The driver
+  /// is then started to enable inspection of the database.
+  Future<void> init() async {
+    final sqlServer = DriftSQLDatabaseServer(
+      id: '1',
+      name: 'SQL server', // Database name and Shown in inspector
+      database: Injector.instance<AppDatabase>(), // Database
+    );
+    driver = StorageServerDriver(
+      bundleId: 'com.example.*', // App bundle ID
+    )..addSQLServer(sqlServer);
+
+    await _startService();
+  }
+
+  Future<void> _startService() async {
+    if (kDebugMode) await driver.start();
+  }
+
+  /// Stops the storage server driver.
+  Future<void> stopService() async {
+    if (kDebugMode) await driver.stop();
+  }
+}
+```
