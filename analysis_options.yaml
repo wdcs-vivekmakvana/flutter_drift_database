@@ -1,0 +1,27 @@
+include: package:very_good_analysis/analysis_options.yaml
+linter:
+  rules:
+    public_member_api_docs: true
+    sort_pub_dependencies: true
+    lines_longer_than_80_chars: false
+    one_member_abstracts: false
+    constant_identifier_names: false
+    always_use_package_imports: true
+    depend_on_referenced_packages: false
+    avoid_multiple_declarations_per_line: false
+analyzer:
+  exclude:
+    - '**.g.dart'
+    - '**.freezed.dart'
+    - lib/graphql/__generated__/*.gql.dart
+    - lib/firebase_options*.dart
+    - lib/graphql/__generated__/*.dart
+  errors:
+    invalid_annotation_target: ignore
+targets:
+  $default:
+    builders:
+      drift_dev:
+        options:
+          # To use ISO 8601 strings
+          store_date_time_values_as_text: true
