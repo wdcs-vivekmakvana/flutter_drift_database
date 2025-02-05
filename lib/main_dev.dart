@@ -6,7 +6,7 @@ import 'package:flutter_local_data_base_drift/injector/injector.dart';
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
   Injector.initModules();
-  currentEnv = EnvTypes.production;
+  currentEnv = EnvTypes.dev;
   runApp(const MyApp());
 }
 
