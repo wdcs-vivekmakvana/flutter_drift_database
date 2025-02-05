@@ -1,5 +1,6 @@
 import 'package:flutter_local_data_base_drift/data_base/data_base.dart';
 import 'package:flutter_local_data_base_drift/data_base/database_inspector.dart';
+import 'package:flutter_local_data_base_drift/data_base/dm_db_model/dm_repo.dart';
 import 'package:flutter_local_data_base_drift/data_base/tables/todo_repo.dart';
 import 'package:get_it/get_it.dart';
 
@@ -29,6 +30,8 @@ class Injector {
   }
 
   static void _servicesInject(GetIt injector) {
-    injector.registerFactory(() => TodoRepo(instance: instance()));
+    injector
+      ..registerFactory(() => TodoRepo(instance: instance()))
+      ..registerFactory(() => DmRepo(instance: instance()));
   }
 }

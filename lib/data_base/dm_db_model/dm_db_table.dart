@@ -23,7 +23,7 @@ class ReplyModel {
 }
 
 ///
-@DataClassName('DmDbModel')
+@UseRowClass(DmDbTable)
 class DmDbTable extends Table with TableMixin {
   /// Message Id
   TextColumn get messageId => text().named('message_id')();
@@ -51,7 +51,7 @@ class DmDbTable extends Table with TableMixin {
   TextColumn get channelId => text().named('channel_id')();
 
   ///
-  TextColumn get reply => text().map(ModelTypeConverter()).nullable()();
+  TextColumn get reply => text().named('reply').map(ModelTypeConverter()).nullable()();
 
   @override
   String get tableName => 'DmTable';
