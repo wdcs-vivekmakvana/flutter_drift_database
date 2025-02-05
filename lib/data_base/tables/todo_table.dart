@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:drift/drift.dart';
 import 'package:flutter_local_data_base_drift/data_base/table_mixin.dart';
+import 'package:flutter_local_data_base_drift/data_base/tables/todo_enum.dart';
 
 /// TodoTable
 @DataClassName('Todo')
@@ -22,42 +23,30 @@ class TodoTable extends Table with TableMixin {
   String get tableName => 'TodoTable';
 }
 
-/// Enum representing the status of a Tod0 item.
-enum TodoEnum {
-  /// Represents a Tod0 item that is yet to be completed.
-  Pending,
-
-  /// Represents a Tod0 item that has been completed.
-  Completed,
-
-  /// Represents a Tod0 item that has been deleted.
-  Deleted,
-}
-
-/*/// A companion class for the [TodoTable] that assists in building insert and update statements.
+/// A companion class for the [TodoTable] that assists in building insert and update statements.
 /// It provides methods to insert new records and update existing ones.
-class TodoTableCompanion extends UpdateCompanion<Todo> {
-
-  /// Constructs a [TodoTableCompanion] with default values for each field.
-  const TodoTableCompanion({
+class CustomTodoTableCompanion extends UpdateCompanion<TodoTable> {
+  /// Constructs a [CustomTodoTableCompanion] with default values for each field.
+  const CustomTodoTableCompanion({
     this.title = const Value.absent(),
     this.content = const Value.absent(),
     this.status = const Value.absent(),
   });
 
-  /// Constructs a [TodoTableCompanion] for inserting a new record into the table.
+  /// Constructs a [CustomTodoTableCompanion] for inserting a new record into the table.
   ///
   /// Parameters:
   /// - [title]: The title of the Tod0 item. Must not be null.
   /// - [content]: The content of the Tod0 item. Must not be null.
   /// - [status]: The status of the Tod0 item. Must not be null.
-  TodoTableCompanion.insert({
+  CustomTodoTableCompanion.insert({
     required String title,
     required String content,
     required TodoEnum status,
   })  : title = Value(title),
         content = Value(content),
         status = Value(status);
+
   /// The title of the Tod0 item.
   final Value<String> title;
 
@@ -78,7 +67,14 @@ class TodoTableCompanion extends UpdateCompanion<Todo> {
   Map<String, Expression<Object>> toColumns(bool nullToAbsent) {
     throw UnimplementedError();
   }
-}*/
+
+  /// Factory method for creating Model from Json
+  /* factory TodoTableCompanion.fromJson(Map<String, dynamic> json) => TodoTableCompanion(
+      title: Value(json['title'] as String),
+      content: Value(json['content'] as String),
+      status: Value(json['status'] as TodoEnum),
+  );*/
+}
 
 ///
 class StringListTypeConverter extends TypeConverter<List<String>, String> {

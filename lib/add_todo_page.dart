@@ -1,6 +1,7 @@
 import 'package:drift/drift.dart' as drift;
 import 'package:flutter/material.dart';
 import 'package:flutter_local_data_base_drift/data_base/data_base.dart';
+import 'package:flutter_local_data_base_drift/data_base/tables/todo_enum.dart';
 import 'package:flutter_local_data_base_drift/data_base/tables/todo_repo.dart';
 import 'package:flutter_local_data_base_drift/data_base/tables/todo_table.dart';
 import 'package:flutter_local_data_base_drift/injector/injector.dart';

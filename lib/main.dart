@@ -96,24 +96,26 @@ class _MyHomePageState extends State<MyHomePage> {
         ],
       ),
       body: ListView.builder(
-        itemBuilder: (context, index) => ListTile(
-          title: Text('${todos[index].id} : ${todos[index].title}'),
-          subtitle: Text('${todos[index].content} ${todos[index].createdAt}'),
-          trailing: Text(todos[index].status.toString()),
-          onTap: () {
-            Navigator.of(context)
-                .push(
-              MaterialPageRoute<bool?>(
-                builder: (context) => AddTodoPage(todo: todos[index]),
-              ),
-            )
-                .then((value) async {
-              if (value != null && value) {
-                await _getTodos();
-              }
-            });
-          },
-        ),
+        itemBuilder: (context, index) {
+          return ListTile(
+            title: Text('${todos[index].id} : ${todos[index].title}'),
+            subtitle: Text('${todos[index].content} ${todos[index].createdAt}'),
+            trailing: Text(todos[index].status.toString()),
+            onTap: () {
+              Navigator.of(context)
+                  .push(
+                MaterialPageRoute<bool?>(
+                  builder: (context) => AddTodoPage(todo: todos[index]),
+                ),
+              )
+                  .then((value) async {
+                if (value != null && value) {
+                  await _getTodos();
+                }
+              });
+            },
+          );
+        },
         itemCount: todos.length,
       ),
       floatingActionButton: FloatingActionButton(

@@ -1,11 +1,14 @@
 import 'package:drift/drift.dart';
 import 'package:drift_flutter/drift_flutter.dart';
+import 'package:flutter_local_data_base_drift/data_base/dm_db_model/dm_db_table.dart';
+import 'package:flutter_local_data_base_drift/data_base/dm_db_model/message_type.dart';
+import 'package:flutter_local_data_base_drift/data_base/tables/todo_enum.dart';
 import 'package:flutter_local_data_base_drift/data_base/tables/todo_table.dart';
 
 part 'data_base.g.dart';
 
 /// App Database
-@DriftDatabase(tables: [TodoTable])
+@DriftDatabase(tables: [TodoTable, DmDbTable])
 class AppDatabase extends _$AppDatabase {
   /// Constructor for the AppDatabase class.
   ///
