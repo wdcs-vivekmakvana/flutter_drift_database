@@ -10,5 +10,5 @@ mixin TableMixin on Table {
   late final id = integer().autoIncrement()();
 
   /// Column for created at timestamp
-  late final createdAt = dateTime().withDefault(currentDateAndTime)();
+  late final createdAt = dateTime().nullable().withDefault(currentDateAndTime)();
 }
