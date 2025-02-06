@@ -23,7 +23,7 @@ class ReplyModel {
 }
 
 ///
-@UseRowClass(DmDbTable)
+@DataClassName('DmDbModel')
 class DmDbTable extends Table with TableMixin {
   /// Message Id
   TextColumn get messageId => text().named('message_id')();

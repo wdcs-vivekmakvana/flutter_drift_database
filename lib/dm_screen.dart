@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_local_data_base_drift/data_base/dm_db_model/dm_db_model.dart';
+import 'package:flutter_local_data_base_drift/data_base/data_base.dart';
 import 'package:flutter_local_data_base_drift/data_base/dm_db_model/dm_repo.dart';
 import 'package:flutter_local_data_base_drift/injector/injector.dart';
 
@@ -41,14 +41,14 @@ class _DmScreenState extends State<DmScreen> {
             onPressed: () {
               final jsonList = jsonDecode(dmJson) as List<dynamic>;
 
-              final dmColumns = <CustomDmTableCompanion>[];
+              final dmDbList = <DmDbModel>[];
               for (final element in jsonList) {
-                dmColumns.add(CustomDmTableCompanion.insertJson(json: element as Map<String, dynamic>));
+                dmDbList.add(DmDbModel.fromJson(element as Map<String, dynamic>));
               }
 
               dmRepo.instance.transaction(() async {
-                for (final dmColumn in dmColumns) {
-                  await dmRepo.addTodo(dmColumn);
+                for (final dmColumn in dmDbList) {
+                  await dmRepo.addMessage(dmColumn);
                 }
               });
 
